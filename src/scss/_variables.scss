@@ -5,16 +5,17 @@ serif;
 $font-scondary: 'Manrope Variable',
 sans-serif;
 
-$green-color: #44FFA1;
-$purple-color-900: #24053E;
-$purple-color-500:#584D62;
-$purple-color-100:#FCF8FF;
+$bg-gray: #ddd;
+
+$green-color: #44ffa1;
+$purple-color-900: #24053e;
+$purple-color-500: #584d62;
+$purple-color-100: #fcf8ff;
 $white-color: #fff;
 
-
-$bg-gradient: linear-gradient(0deg,
-  rgba(255, 106, 58, 1) 0%,
-  rgba(255, 82, 123, 1) 100%);
+$solate-color-100: #FCF8FF;
+$solate-color-500: #584D62;
+$solate-color-900: #24053E;
 
 // 🌟 새 챌린지를 시작할 때 README의 "Layout" 섹션 값으로 아래 두 숫자만 교체하면 된다.
 // 모바일은 breakpoint가 아니라 mobile-first 기본 스타일이므로 맵에 넣지 않는다.

@@ -1,32 +1,26 @@
 @charset "UTF-8";
 
-/*
-0: Sharp (가장 날카롭고 깔끔한 형태)
-50: Soft (중간 정도의 부드러움)
-100: SuperSoft (모서리가 매우 둥글고 폭신한 느낌
-*/
-@font-face {
-  font-family: 'Fraunces Display';
-  src: url('./fonts/fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');
-  font-weight: 0 900;
-  font-style: normal;
-  font-display: swap;
 
+/*Regula*/
+@font-face {
+  font-family: 'fraunces-regular';
+  src: url('../fonts/fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf');
 }
 
-/*
-200: ExtraLight (최소 굵기)
-300: Light
-400: Regular (기본 본문용)
-500: Medium
-600: SemiBold
-700: Bold
-800: ExtraBold (최대 굵기) 
-*/
 @font-face {
-  font-family: 'Manrope Variable';
-  src: url('./fonts/manrope/Manrope-VariableFont_wght.ttf') format('truetype-variation');
-  font-weight: 200 800;
-  font-style: normal;
-  font-display: swap;
+  font-family: 'manrope-regular';
+  src: url('../fonts/manrope/static/Manrope-Regular.ttf');
+}
+
+/*Bold*/
+@font-face {
+  font-family: 'fraunces-bold';
+  src: url('../fonts/fraunces/static/Fraunces_144pt-SemiBold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'manrope-bold';
+  src: url('../fonts/manrope/Manrope-VariableFont_wght.ttf');
+  font-weight: 700;
 }

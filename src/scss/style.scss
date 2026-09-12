@@ -1,6 +1,7 @@
 @use 'fonts'as *;
 @use 'reset'as *;
-@use 'variables'as v;
+@use 'variables'as *;
+@use 'utilities'as *;
 @use 'mixins'as m; // _mixins.scss 파일이 같은 폴더에 있는 경우
 
 button:focus-visible {
@@ -9,8 +10,9 @@ button:focus-visible {
 }
 
 body {
-  @include m.font-style(16px, 400, 1);
   background-color: #fff;
+  margin: 0 auto;
+  border: 1px solid #000;
 }
 
 // 컨텐츠 가운데 정렬 + 최대폭 wrapper. 챌린지마다 max-width 값만 바꿔서 쓴다.
@@ -20,3 +22,237 @@ body {
 
 // tablet/desktop에서 레이아웃 구조 자체가 바뀔 때(예: flex-direction, grid-template-columns)는
 // @include m.mq('tablet') { ... } 처럼 각 셀렉터 안에서 사용한다.
+header,
+main,
+footer {
+  width: min(375px, 100%);
+  margin: 0 auto;
+}
+
+header {
+  background-color: $solate-color-900;
+  position: relative;
+
+  nav {
+    width: 100%;
+    height: 67px;
+    padding: 32px 20px 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      width: 95.76px;
+    }
+
+    button {
+      margin-left: auto;
+      color: $white-color;
+      font-family: 'manrope-bold';
+      font-size: 18px;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 151px;
+        height: 3px;
+        transform: translateX(-50%);
+        background-color: $green-color;
+      }
+
+      transition: 0.3s;
+
+      &:hover {
+        color: $green-color;
+      }
+    }
+  }
+
+  .hero {
+    margin-block-start: 56px;
+    padding: 0 20xp;
+    color: $white-color;
+    border-radius: 0 0 15px 15px;
+
+    .title {
+      font-family: 'fraunces-bold';
+      font-size: 48px;
+      text-align: center;
+    }
+
+    span {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 151px;
+        height: 3px;
+        transform: translateX(-50%);
+        background-color: $green-color;
+      }
+    }
+
+    text-align: center;
+
+    .hero-btn {
+      margin-block-start: 40px;
+      font-family: 'manrope-bold';
+      font-size: 16px;
+      color: $solate-color-900;
+      padding: 12px 32px;
+      background-color: $green-color;
+    }
+  }
+
+  .hero-curve {
+    clip-path: ellipse(70% 30% at 45% 51%);
+    min-height: 270px;
+    width: 100%;
+    position: absolute;
+    bottom: -180px;
+    z-index: -10;
+    background: #24053e;
+    overflow: none;
+  }
+
+  img.hero {
+    width: 302px;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+}
+
+main {
+  margin-block-start: 128px;
+  padding: 0 20px;
+
+  .features {
+    padding-block-start: 64px;
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .feature-item:not(:first-child) {
+        margin-block-start: 32px;
+      }
+
+      .feature-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .number {
+          width: 48px;
+          height: 48px;
+          font-family: 'fraunces-bold';
+          border-radius: 50%;
+          border: 1px solid $solate-color-500;
+          text-align: center;
+          line-height: 48px;
+        }
+
+        .title {
+          margin-block-start: 24px;
+          font-family: 'fraunces-bold';
+          font-size: 24px;
+          color: $solate-color-900;
+        }
+
+        .description {
+          margin-block-start: 16px;
+          font-family: 'manrope-regular';
+          font-size: 16px;
+          text-align: center;
+          color: $solate-color-900;
+        }
+      }
+    }
+
+  }
+
+  .cta-beta {
+    margin-block-start: 122px;
+    width: 335px;
+    height: 625px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 3px);
+    grid-template-rows: repeat(auto-fill, 3px);
+
+    .header {
+      grid-column: 1 / -1;
+      grid-row: 1 / 78;
+      width: 280px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .content {
+      width: 100%;
+      padding: 0 32px;
+      grid-column: 1 / -1;
+      grid-row: 78 / -1;
+
+      background-color: $solate-color-900;
+      color: $white-color;
+      text-align: center;
+
+      .title {
+        padding-top: 32px;
+        font-family: fraunces-bold;
+      }
+
+      .description {
+        margin-top: 32px;
+        font-family: manrope-regular;
+      }
+
+      .btn-primary {
+        margin-block-start: 32px;
+        padding: 12px 32px;
+        background-color: $green-color;
+        margin-block-end: 32px;
+      }
+    }
+  }
+}
+
+footer {
+  margin-block-start: 80px;
+
+  img {
+    width: 95.76;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  ul {
+    width: 116px;
+    margin: 0 auto;
+    margin-block-start: 56px;
+    display: flex;
+    justify-content: center;
+
+    li {
+      flex: 1;
+    }
+
+    margin-block-end: 80px;
+  }
+}
