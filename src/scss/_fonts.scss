@@ -1,17 +1,32 @@
 @charset "UTF-8";
 
+/*
+0: Sharp (가장 날카롭고 깔끔한 형태)
+50: Soft (중간 정도의 부드러움)
+100: SuperSoft (모서리가 매우 둥글고 폭신한 느낌
+*/
 @font-face {
-  font-family: 'Roboto', sans-serif;
-  src: url('../../fonts/Roboto-Regular.ttf') format('woff2');
-  font-weight: 400;
+  font-family: 'Fraunces Display';
+  src: url('./fonts/fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');
+  font-weight: 0 900;
   font-style: normal;
   font-display: swap;
+
 }
 
+/*
+200: ExtraLight (최소 굵기)
+300: Light
+400: Regular (기본 본문용)
+500: Medium
+600: SemiBold
+700: Bold
+800: ExtraBold (최대 굵기) 
+*/
 @font-face {
-  font-family: 'Roboto', sans-serif;
-  src: url('../../fonts/Roboto-Bold.ttf') format('woff2');
-  font-weight: 700;
+  font-family: 'Manrope Variable';
+  src: url('./fonts/manrope/Manrope-VariableFont_wght.ttf') format('truetype-variation');
+  font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
