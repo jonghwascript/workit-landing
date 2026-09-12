@@ -11,8 +11,6 @@ button:focus-visible {
 
 body {
   background-color: #fff;
-  margin: 0 auto;
-  border: 1px solid #000;
 }
 
 // 컨텐츠 가운데 정렬 + 최대폭 wrapper. 챌린지마다 max-width 값만 바꿔서 쓴다.
@@ -27,6 +25,14 @@ main,
 footer {
   width: min(375px, 100%);
   margin: 0 auto;
+
+  @include m.mq('tablet') {
+    width: min(768px, 100%);
+  }
+
+  @include m.mq('desktop') {
+    width: min(1440px, 100%);
+  }
 }
 
 header {
@@ -45,7 +51,7 @@ header {
       width: 95.76px;
     }
 
-    button {
+    .nav-btn {
       margin-left: auto;
       color: $white-color;
       font-family: 'manrope-bold';
@@ -72,61 +78,114 @@ header {
   }
 
   .hero {
-    margin-block-start: 56px;
-    padding: 0 20xp;
+    // margin-block-start: 56px;
+    // padding: 0 20px;
     color: $white-color;
     border-radius: 0 0 15px 15px;
+    width: 100%;
+    height: 390px;
 
-    .title {
-      font-family: 'fraunces-bold';
-      font-size: 48px;
-      text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, 10px);
+
+    @include m.mq('tablet') {
+      /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
+      grid-template-columns: repeat(12, 1fr);
     }
 
-    span {
-      position: relative;
+    .hero-content {
+      grid-column: 4 / 10;
+      grid-row: 7 / 19;
 
-      &::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        width: 151px;
-        height: 3px;
-        transform: translateX(-50%);
+      text-align: center;
+
+      .title {
+        font-family: 'fraunces-bold';
+        font-size: 48px;
+        text-align: center;
+
+        span {
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 151px;
+            height: 3px;
+            transform: translateX(-50%);
+            background-color: $green-color;
+          }
+        }
+      }
+
+      .hero-btn {
+        margin-block-start: 40px;
+        font-family: 'manrope-bold';
+        font-size: 16px;
+        color: $solate-color-900;
+        padding: 12px 32px;
         background-color: $green-color;
+        transition: 0.3s;
+
+        &:hover {
+          border: 1px solid $green-color;
+          color: $green-color;
+          background-color: transparent;
+        }
       }
     }
 
-    text-align: center;
+    @include m.mq('tablet') {
+      .hero-left {
+        grid-column: 1 / 4;
+        grid-row: 6 / 31;
+        background-image: url(../images/bg-pattern-1.svg);
+        background-repeat: no-repeat;
+        background-position: 146% 71%;
+      }
 
-    .hero-btn {
-      margin-block-start: 40px;
-      font-family: 'manrope-bold';
-      font-size: 16px;
-      color: $solate-color-900;
-      padding: 12px 32px;
-      background-color: $green-color;
+      .hero-right {
+        grid-column: -1 / -4;
+        grid-row: 22 / 37;
+        background-image: url(../images/bg-pattern-2.svg);
+        background-repeat: no-repeat;
+        background-position: right -92px top -20px;
+      }
+    }
+
+    @include m.mq('desktop') {
+      .hero-left {
+        grid-column: 1 / 4;
+        grid-row: 8 / 37;
+        background-image: url(../images/bg-pattern-1.svg);
+        background-repeat: no-repeat;
+        background-position: 146% 71%;
+      }
+
     }
   }
 
   .hero-curve {
+    grid-column: 1 / -1;
+    grid-row: 27 / -1;
+
     clip-path: ellipse(70% 30% at 45% 51%);
-    min-height: 270px;
+    min-height: 200px;
     width: 100%;
-    position: absolute;
-    bottom: -180px;
-    z-index: -10;
     background: #24053e;
-    overflow: none;
+    position: relative;
+    z-index: -1;
   }
 
   img.hero {
-    width: 302px;
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    grid-column: 1 / -1;
+    grid-row: 34 / -1;
+    width: 320.02px;
+    height: 184px;
     z-index: 10;
   }
 
@@ -135,6 +194,10 @@ header {
 main {
   margin-block-start: 128px;
   padding: 0 20px;
+
+  @include m.mq('tablet') {
+    padding: 0 44px;
+  }
 
   .features {
     padding-block-start: 64px;
@@ -145,8 +208,9 @@ main {
       justify-content: center;
       align-items: center;
 
-      .feature-item:not(:first-child) {
-        margin-block-start: 32px;
+      @include m.mq('desktop') {
+        flex-direction: row;
+        gap: 32px;
       }
 
       .feature-item {
@@ -155,29 +219,74 @@ main {
         justify-content: center;
         align-items: center;
 
+        @include m.mq('tablet') {
+          flex-direction: row;
+          gap: 56px;
+        }
+
+        @include m.mq('desktop') {
+          flex: 1;
+          flex-direction: column;
+        }
+
         .number {
-          width: 48px;
-          height: 48px;
+          width: min(48px, 100%);
+          height: min(48px, 100%);
           font-family: 'fraunces-bold';
           border-radius: 50%;
           border: 1px solid $solate-color-500;
           text-align: center;
           line-height: 48px;
+
+          @include m.mq('tablet') {
+            flex: 0 1 auto;
+          }
         }
 
-        .title {
-          margin-block-start: 24px;
-          font-family: 'fraunces-bold';
-          font-size: 24px;
-          color: $solate-color-900;
-        }
+        .text-group {
+          @include m.mq('tablet') {
+            flex: 1 1 0;
+            min-width: 0;
+            word-break: break-all;
+            text-align: left;
+          }
 
-        .description {
-          margin-block-start: 16px;
-          font-family: 'manrope-regular';
-          font-size: 16px;
-          text-align: center;
-          color: $solate-color-900;
+          .title {
+            margin-block-start: 24px;
+            font-family: 'fraunces-bold';
+            font-size: 24px;
+            color: $solate-color-900;
+
+            @include m.mq('desktop') {
+              text-align: center;
+            }
+          }
+
+          .description {
+            margin-block-start: 16px;
+            font-family: 'manrope-regular';
+            font-size: 16px;
+            text-align: center;
+            color: $solate-color-900;
+
+            @include m.mq('tablet') {
+              text-align: left;
+            }
+
+            @include m.mq('desktop') {
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .feature-item:not(:first-child) {
+        margin-block-start: 32px;
+      }
+
+      @include m.mq('tablet') {
+        .feature-item:not(:first-child) {
+          margin-block-start: 0;
         }
       }
     }
@@ -186,12 +295,17 @@ main {
 
   .cta-beta {
     margin-block-start: 122px;
-    width: 335px;
     height: 625px;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, 3px);
-    grid-template-rows: repeat(auto-fill, 3px);
+    grid-template-columns: repeat(auto-fill, minmax(3px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(3px, 1fr));
+
+    @include m.mq('tablet') {
+      height: 558px;
+      /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
+      grid-template-columns: repeat(24, 1fr);
+    }
 
     .header {
       grid-column: 1 / -1;
@@ -200,26 +314,45 @@ main {
       height: auto;
       display: block;
       margin: 0 auto;
+
+      @include m.mq('tablet') {
+        grid-column: 1 / span 8;
+        justify-self: end;
+      }
     }
 
     .content {
       width: 100%;
-      padding: 0 32px;
+      padding: 32px;
       grid-column: 1 / -1;
-      grid-row: 78 / -1;
-
+      grid-row: 78 / -2;
       background-color: $solate-color-900;
       color: $white-color;
       text-align: center;
 
+      @include m.mq('tablet') {
+        grid-column: 6 / -1;
+        grid-row: 49 / -9;
+        padding: 48px;
+        text-align: left;
+      }
+
       .title {
-        padding-top: 32px;
         font-family: fraunces-bold;
+
+        @include m.mq('tablet') {
+          font-size: 48px;
+        }
       }
 
       .description {
         margin-top: 32px;
         font-family: manrope-regular;
+        line-height: 1.8;
+
+        @include m.mq('tablet') {
+          font-size: 16px;
+        }
       }
 
       .btn-primary {
@@ -227,6 +360,34 @@ main {
         padding: 12px 32px;
         background-color: $green-color;
         margin-block-end: 32px;
+        transition: 0.3s;
+
+        &:hover {
+          border: 1px solid $green-color;
+          color: $green-color;
+          background-color: transparent;
+        }
+      }
+    }
+
+    @include m.mq('tablet') {
+      position: relative;
+
+      .hero-bottom {
+        position: absolute;
+        bottom: -13%;
+        right: 3%;
+        width: 200px;
+        height: 200px;
+        background-image: url(../images/bg-pattern-3.svg);
+        background-repeat: no-repeat;
+        background-position: center center
+      }
+    }
+
+    @include m.mq('tablet') {
+      .hero-bottom {
+        right: 11%;
       }
     }
   }
