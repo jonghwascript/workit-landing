@@ -498,7 +498,9 @@ main .cta-beta {
 }
 @media (min-width: 768px) {
   main .cta-beta {
-    display: flow-root;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: 1fr;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -514,7 +516,19 @@ main .cta-beta .avatar {
 }
 @media (min-width: 768px) {
   main .cta-beta .avatar {
-    float: left;
+    grid-column: 1/9;
+    grid-row: 1;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+main .cta-beta .avatar {
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 1024px) {
+  main .cta-beta .avatar {
+    grid-column: 1/9;
+    grid-row: 1;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -526,15 +540,15 @@ main .cta-beta .content {
   color: #fff;
   text-align: center;
   position: relative;
+  z-index: 5;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
   main .cta-beta .content {
-    max-width: 504px;
-    text-align: left;
-    float: right;
-    transform: translate(-4vw, -8vh);
+    grid-column: 6/-1;
+    grid-row: 1;
+    margin-top: 161px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -544,8 +558,9 @@ main .cta-beta .content {
 }
 @media (min-width: 1024px) {
   main .cta-beta .content {
-    max-width: 730px;
-    transform: translate(-1vw, -16vh);
+    grid-column: 7/-1;
+    grid-row: 1;
+    margin-top: 106px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -594,13 +609,14 @@ main .cta-beta {
   }
   main .cta-beta .hero-bottom {
     position: absolute;
-    bottom: -6%;
+    bottom: -20%;
     right: 10%;
     width: 200px;
     height: 200px;
     background-image: url(../images/bg-pattern-3.svg);
     background-repeat: no-repeat;
     background-position: center center;
+    z-index: 15;
   }
   main .cta-beta {
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
@@ -609,14 +625,6 @@ main .cta-beta {
 
 footer {
   margin-block-start: 80px;
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  footer {
-    margin-block-start: 0;
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
 }
 footer img {
   width: 95.76;

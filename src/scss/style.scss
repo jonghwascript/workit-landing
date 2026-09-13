@@ -352,7 +352,9 @@ main {
     position: relative;
 
     @include m.mq('tablet') {
-      display: flow-root;
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      grid-template-rows: 1fr;
     }
 
     .avatar {
@@ -364,7 +366,12 @@ main {
       margin: 0 auto;
 
       @include m.mq('tablet') {
-        float: left;
+        grid-column: 1 / 9;
+        grid-row:  1;
+      }
+      @include m.mq('desktop') {
+        grid-column: 1 / 9;
+        grid-row:  1;
       }
     }
 
@@ -376,17 +383,17 @@ main {
       color: $white-color;
       text-align: center;
       position: relative;
+      z-index: 5;
 
       @include m.mq('tablet') {
-        max-width: 504px;
-        text-align: left;
-        float: right;
-        transform: translate(-4vw, -8vh);
+        grid-column: 6 / -1;
+        grid-row: 1;
+        margin-top: 161px;
       }
-
       @include m.mq('desktop') {
-        max-width: 730px;
-        transform: translate(-1vw, -16vh);
+        grid-column: 7 / -1;
+        grid-row: 1;
+        margin-top: 106px;
       }
 
       .title {
@@ -426,13 +433,14 @@ main {
 
       .hero-bottom {
         position: absolute;
-        bottom: -6%;
+        bottom: -20%;
         right: 10%;
         width: 200px;
         height: 200px;
         background-image: url(../images/bg-pattern-3.svg);
         background-repeat: no-repeat;
         background-position: center center;
+        z-index: 15;
       }
     }
   }
@@ -440,10 +448,6 @@ main {
 
 footer {
   margin-block-start: 80px;
-
-  @include m.mq('tablet') {
-    margin-block-start: 0;
-  }
 
   img {
     width: 95.76;
