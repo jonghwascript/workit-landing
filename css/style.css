@@ -534,7 +534,7 @@ main .cta-beta .content {
     max-width: 504px;
     text-align: left;
     float: right;
-    transform: translate(-7%, -17%);
+    transform: translate(-4vw, -8vh);
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -542,9 +542,10 @@ main .cta-beta .content {
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   main .cta-beta .content {
     max-width: 730px;
+    transform: translate(-1vw, -16vh);
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }

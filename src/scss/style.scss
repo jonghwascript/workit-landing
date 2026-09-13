@@ -38,7 +38,6 @@ header {
   background-color: $solate-color-900;
   position: relative;
   padding-bottom: 30px;
-
   height: calc(481px - 30px);
   //패딩에는 배경색을 제외
   background-clip: content-box;
@@ -382,12 +381,12 @@ main {
         max-width: 504px;
         text-align: left;
         float: right;
-        transform: translate(-7%, -17%);
+        transform: translate(-4vw, -8vh);
       }
 
-
-      @include m.mq('tablet') {
+      @include m.mq('desktop') {
         max-width: 730px;
+        transform: translate(-1vw, -16vh);
       }
 
       .title {
