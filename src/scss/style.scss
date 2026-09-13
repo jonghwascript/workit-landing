@@ -18,8 +18,7 @@ body {
   @include m.container(1110px, 24px);
 }
 
-// tablet/desktop에서 레이아웃 구조 자체가 바뀔 때(예: flex-direction, grid-template-columns)는
-// @include m.mq('tablet') { ... } 처럼 각 셀렉터 안에서 사용한다.
+
 header,
 main,
 footer {
@@ -38,6 +37,44 @@ footer {
 header {
   background-color: $solate-color-900;
   position: relative;
+  padding-bottom: 30px;
+
+  height: calc(481px - 30px);
+  //패딩에는 배경색을 제외
+  background-clip: content-box;
+
+  @include m.mq('tablet') {
+    height: calc(540px - 30px);
+  }
+
+  @include m.mq('tablet') {
+    background-image:
+      url('../images/bg-pattern-1.svg'),
+      /* 1번 이미지 */
+      url('../images/bg-pattern-2.svg');
+    /* 2번 이미지 */
+
+    /* 위치 지정 */
+    background-position:
+      left -22vw top 28%,
+      right -9vw top 81%;
+
+    /* 반복 및 크기 지정 */
+    background-repeat:
+      no-repeat,
+      no-repeat;
+
+    background-size:
+      270px,
+      141px;
+  }
+
+  @include m.mq('desktop') {
+    /* 위치 지정 */
+    background-position:
+      left -10vw top 28%,
+      right -5vw top 81%;
+  }
 
   nav {
     width: 100%;
@@ -47,8 +84,10 @@ header {
     display: flex;
     justify-content: space-between;
 
-    img {
+    .logo {
       width: 95.76px;
+      height: auto;
+      display: block;
     }
 
     .nav-btn {
@@ -78,34 +117,26 @@ header {
   }
 
   .hero {
-    // margin-block-start: 56px;
-    // padding: 0 20px;
+
     color: $white-color;
     border-radius: 0 0 15px 15px;
-    width: 100%;
-    height: 390px;
+    overflow: hidden;
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, 10px);
-
-    @include m.mq('tablet') {
-      /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
-      grid-template-columns: repeat(12, 1fr);
-    }
+    @include m.mq('tablet') {}
 
     .hero-content {
-      grid-column: 4 / 10;
-      grid-row: 7 / 19;
-
-      text-align: center;
+      margin-block-start: 56px;
 
       .title {
         font-family: 'fraunces-bold';
         font-size: 48px;
         text-align: center;
 
-        span {
+        @include m.mq('tablet') {
+          font-size: 60px;
+        }
+
+        .underline {
           position: relative;
 
           &::after {
@@ -113,13 +144,19 @@ header {
             position: absolute;
             left: 50%;
             bottom: 0;
-            width: 151px;
+            width: 3.14em;
             height: 3px;
-            transform: translateX(-50%);
+            transform: translateX(-64%);
             background-color: $green-color;
           }
         }
+
+        span:not(.underline) {
+          display: block;
+        }
       }
+
+      text-align: center;
 
       .hero-btn {
         margin-block-start: 40px;
@@ -129,6 +166,8 @@ header {
         padding: 12px 32px;
         background-color: $green-color;
         transition: 0.3s;
+        position: relative;
+        z-index: 15;
 
         &:hover {
           border: 1px solid $green-color;
@@ -138,69 +177,58 @@ header {
       }
     }
 
-    @include m.mq('tablet') {
-      .hero-left {
-        grid-column: 1 / 4;
-        grid-row: 6 / 31;
-        background-image: url(../images/bg-pattern-1.svg);
-        background-repeat: no-repeat;
-        background-position: 146% 71%;
-      }
-
-      .hero-right {
-        grid-column: -1 / -4;
-        grid-row: 22 / 37;
-        background-image: url(../images/bg-pattern-2.svg);
-        background-repeat: no-repeat;
-        background-position: right -92px top -20px;
-      }
-    }
-
-    @include m.mq('desktop') {
-      .hero-left {
-        grid-column: 1 / 4;
-        grid-row: 8 / 37;
-        background-image: url(../images/bg-pattern-1.svg);
-        background-repeat: no-repeat;
-        background-position: 146% 71%;
-      }
-
+    .hero-left {
+      width: 280px;
+      height: 215px;
+      background-image: none;
+      background-position: center center;
+      background-size: contain;
+      position: absolute;
+      top: 20%;
+      left: -23%;
     }
   }
 
   .hero-curve {
-    grid-column: 1 / -1;
-    grid-row: 27 / -1;
-
     clip-path: ellipse(70% 30% at 45% 51%);
-    min-height: 200px;
     width: 100%;
+    min-height: 100px;
     background: #24053e;
-    position: relative;
-    z-index: -1;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
   }
 
-  img.hero {
-    margin: 0 auto;
-    grid-column: 1 / -1;
-    grid-row: 34 / -1;
-    width: 320.02px;
-    height: 184px;
+  .hero-center {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    // width: 320.02px;
+    // height: 184px;
+    /* 반응형을 위한 변경 사항 */
+    width: calc(100% - 2.5rem);
+    /* 부모 공간에 맞춰 유연하게 늘어남 */
+    max-width: 320px;
+    /* 단, 320px 이상으로는 커지지 않음 */
+    height: auto;
+    /* 가로 너비에 맞춰 세로를 자동으로 줄임 */
+    aspect-ratio: 320 / 184;
+    // /* 원본 비율대로 미리 공간을 잡아둠 *
     z-index: 10;
   }
-
 }
 
 main {
-  margin-block-start: 128px;
-  padding: 0 20px;
-
-  @include m.mq('tablet') {
-    padding: 0 44px;
-  }
+  margin-top: -16px;
 
   .features {
-    padding-block-start: 64px;
+    padding-top: calc(184px / 2 + 64px);
+    padding-bottom: 200px;
+    position: relative;
+    z-index: 1;
 
     .feature-list {
       display: flex;
@@ -244,6 +272,8 @@ main {
         }
 
         .text-group {
+          text-align: center;
+
           @include m.mq('tablet') {
             flex: 1 1 0;
             min-width: 0;
@@ -251,15 +281,15 @@ main {
             text-align: left;
           }
 
+          @include m.mq('desktop') {
+            text-align: center;
+          }
+
           .title {
             margin-block-start: 24px;
             font-family: 'fraunces-bold';
             font-size: 24px;
             color: $solate-color-900;
-
-            @include m.mq('desktop') {
-              text-align: center;
-            }
           }
 
           .description {
@@ -291,50 +321,73 @@ main {
       }
     }
 
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 100px;
+      /* 아래쪽 패딩 크기만큼 띄움 -> 배경색 제외 효과 */
+      background-color: $solate-color-100;
+      /* 원하는 배경색 */
+      z-index: -1;
+      /* 콘텐츠 뒤로 보내기 */
+    }
+
+    .features-curve {
+      clip-path: ellipse(70% 30% at 45% 51%);
+      width: 100%;
+      min-height: 200px;
+      background-color: $solate-color-100;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
   }
 
   .cta-beta {
     margin-block-start: 122px;
-    height: 625px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(3px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(3px, 1fr));
+    position: relative;
 
     @include m.mq('tablet') {
-      height: 558px;
-      /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
-      grid-template-columns: repeat(24, 1fr);
+      display: flow-root;
     }
 
-    .header {
-      grid-column: 1 / -1;
-      grid-row: 1 / 78;
-      width: 280px;
-      height: auto;
+    .avatar {
       display: block;
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      aspect-ratio: 280 / 280;
       margin: 0 auto;
 
       @include m.mq('tablet') {
-        grid-column: 1 / span 8;
-        justify-self: end;
+        float: left;
       }
     }
 
     .content {
+      margin-top: -47px;
       width: 100%;
       padding: 32px;
-      grid-column: 1 / -1;
-      grid-row: 78 / -2;
       background-color: $solate-color-900;
       color: $white-color;
       text-align: center;
+      position: relative;
 
       @include m.mq('tablet') {
-        grid-column: 6 / -1;
-        grid-row: 49 / -9;
-        padding: 48px;
+        max-width: 504px;
         text-align: left;
+        float: right;
+        transform: translate(-7%, -17%);
+      }
+
+
+      @include m.mq('tablet') {
+        max-width: 730px;
       }
 
       .title {
@@ -359,7 +412,6 @@ main {
         margin-block-start: 32px;
         padding: 12px 32px;
         background-color: $green-color;
-        margin-block-end: 32px;
         transition: 0.3s;
 
         &:hover {
@@ -375,19 +427,13 @@ main {
 
       .hero-bottom {
         position: absolute;
-        bottom: -13%;
-        right: 3%;
+        bottom: -6%;
+        right: 10%;
         width: 200px;
         height: 200px;
         background-image: url(../images/bg-pattern-3.svg);
         background-repeat: no-repeat;
-        background-position: center center
-      }
-    }
-
-    @include m.mq('tablet') {
-      .hero-bottom {
-        right: 11%;
+        background-position: center center;
       }
     }
   }
@@ -395,6 +441,10 @@ main {
 
 footer {
   margin-block-start: 80px;
+
+  @include m.mq('tablet') {
+    margin-block-start: 0;
+  }
 
   img {
     width: 95.76;

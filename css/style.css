@@ -154,8 +154,46 @@ footer {
 }
 
 header {
-  background-color: #24053E;
+  background-color: #24053e;
   position: relative;
+  padding-bottom: 30px;
+  height: 451px;
+  background-clip: content-box;
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 768px) {
+  header {
+    height: 510px;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+header {
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 768px) {
+  header {
+    background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
+    /* 2번 이미지 */
+    /* 위치 지정 */
+    background-position: left -22vw top 28%, right -9vw top 81%;
+    /* 반복 및 크기 지정 */
+    background-repeat: no-repeat, no-repeat;
+    background-size: 270px, 141px;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+header {
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 1024px) {
+  header {
+    /* 위치 지정 */
+    background-position: left -10vw top 28%, right -5vw top 81%;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
 }
 header nav {
   width: 100%;
@@ -164,8 +202,10 @@ header nav {
   display: flex;
   justify-content: space-between;
 }
-header nav img {
+header nav .logo {
   width: 95.76px;
+  height: auto;
+  display: block;
 }
 header nav .nav-btn {
   margin-left: auto;
@@ -193,130 +233,111 @@ header nav .nav-btn:hover {
 header .hero {
   color: #fff;
   border-radius: 0 0 15px 15px;
-  width: 100%;
-  height: 390px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, 10px);
+  overflow: hidden;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
   header .hero {
-    /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
-    grid-template-columns: repeat(12, 1fr);
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
 header .hero .hero-content {
-  grid-column: 4/10;
-  grid-row: 7/19;
-  text-align: center;
+  margin-block-start: 56px;
 }
 header .hero .hero-content .title {
   font-family: "fraunces-bold";
   font-size: 48px;
   text-align: center;
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
-header .hero .hero-content .title span {
+@media (min-width: 768px) {
+  header .hero .hero-content .title {
+    font-size: 60px;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+header .hero .hero-content .title .underline {
   position: relative;
 }
-header .hero .hero-content .title span::after {
+header .hero .hero-content .title .underline::after {
   content: "";
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 151px;
+  width: 3.14em;
   height: 3px;
-  transform: translateX(-50%);
+  transform: translateX(-64%);
   background-color: #44ffa1;
+}
+header .hero .hero-content .title span:not(.underline) {
+  display: block;
+}
+header .hero .hero-content {
+  text-align: center;
 }
 header .hero .hero-content .hero-btn {
   margin-block-start: 40px;
   font-family: "manrope-bold";
   font-size: 16px;
-  color: #24053E;
+  color: #24053e;
   padding: 12px 32px;
   background-color: #44ffa1;
   transition: 0.3s;
+  position: relative;
+  z-index: 15;
 }
 header .hero .hero-content .hero-btn:hover {
   border: 1px solid #44ffa1;
   color: #44ffa1;
   background-color: transparent;
 }
-header .hero {
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  header .hero .hero-left {
-    grid-column: 1/4;
-    grid-row: 6/31;
-    background-image: url(../images/bg-pattern-1.svg);
-    background-repeat: no-repeat;
-    background-position: 146% 71%;
-  }
-  header .hero .hero-right {
-    grid-column: -1/-4;
-    grid-row: 22/37;
-    background-image: url(../images/bg-pattern-2.svg);
-    background-repeat: no-repeat;
-    background-position: right -92px top -20px;
-  }
-  header .hero {
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
-}
-header .hero {
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 1024px) {
-  header .hero .hero-left {
-    grid-column: 1/4;
-    grid-row: 8/37;
-    background-image: url(../images/bg-pattern-1.svg);
-    background-repeat: no-repeat;
-    background-position: 146% 71%;
-  }
-  header .hero {
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
+header .hero .hero-left {
+  width: 280px;
+  height: 215px;
+  background-image: none;
+  background-position: center center;
+  background-size: contain;
+  position: absolute;
+  top: 20%;
+  left: -23%;
 }
 header .hero-curve {
-  grid-column: 1/-1;
-  grid-row: 27/-1;
   clip-path: ellipse(70% 30% at 45% 51%);
-  min-height: 200px;
   width: 100%;
+  min-height: 100px;
   background: #24053e;
-  position: relative;
-  z-index: -1;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
 }
-header img.hero {
-  margin: 0 auto;
-  grid-column: 1/-1;
-  grid-row: 34/-1;
-  width: 320.02px;
-  height: 184px;
+header .hero-center {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* 반응형을 위한 변경 사항 */
+  width: calc(100% - 2.5rem);
+  /* 부모 공간에 맞춰 유연하게 늘어남 */
+  max-width: 320px;
+  /* 단, 320px 이상으로는 커지지 않음 */
+  height: auto;
+  /* 가로 너비에 맞춰 세로를 자동으로 줄임 */
+  aspect-ratio: 320/184;
   z-index: 10;
 }
 
 main {
-  margin-block-start: 128px;
-  padding: 0 20px;
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  main {
-    padding: 0 44px;
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
+  margin-top: -16px;
 }
 main .features {
-  padding-block-start: 64px;
+  padding-top: 156px;
+  padding-bottom: 200px;
+  position: relative;
+  z-index: 1;
 }
 main .features .feature-list {
   display: flex;
@@ -364,7 +385,7 @@ main .features .feature-list .feature-item .number {
   height: min(48px, 100%);
   font-family: "fraunces-bold";
   border-radius: 50%;
-  border: 1px solid #584D62;
+  border: 1px solid #584d62;
   text-align: center;
   line-height: 48px;
   /* 맵에 해당 기기 이름이 있는지 확인 */
@@ -377,6 +398,7 @@ main .features .feature-list .feature-item .number {
   }
 }
 main .features .feature-list .feature-item .text-group {
+  text-align: center;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -389,26 +411,28 @@ main .features .feature-list .feature-item .text-group {
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
-main .features .feature-list .feature-item .text-group .title {
-  margin-block-start: 24px;
-  font-family: "fraunces-bold";
-  font-size: 24px;
-  color: #24053E;
+main .features .feature-list .feature-item .text-group {
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 1024px) {
-  main .features .feature-list .feature-item .text-group .title {
+  main .features .feature-list .feature-item .text-group {
     text-align: center;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
+}
+main .features .feature-list .feature-item .text-group .title {
+  margin-block-start: 24px;
+  font-family: "fraunces-bold";
+  font-size: 24px;
+  color: #24053e;
 }
 main .features .feature-list .feature-item .text-group .description {
   margin-block-start: 16px;
   font-family: "manrope-regular";
   font-size: 16px;
   text-align: center;
-  color: #24053E;
+  color: #24053e;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -443,57 +467,84 @@ main .features .feature-list {
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
+main .features::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 100px;
+  /* 아래쪽 패딩 크기만큼 띄움 -> 배경색 제외 효과 */
+  background-color: #fcf8ff;
+  /* 원하는 배경색 */
+  z-index: -1;
+  /* 콘텐츠 뒤로 보내기 */
+}
+main .features .features-curve {
+  clip-path: ellipse(70% 30% at 45% 51%);
+  width: 100%;
+  min-height: 200px;
+  background-color: #fcf8ff;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 main .cta-beta {
   margin-block-start: 122px;
-  height: 625px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(3px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(3px, 1fr));
+  position: relative;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
   main .cta-beta {
-    height: 558px;
-    /* 768px 공간을 12칸으로 유연하게 나눔 (1칸당 정확히 64px씩 차지) */
-    grid-template-columns: repeat(24, 1fr);
+    display: flow-root;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
-main .cta-beta .header {
-  grid-column: 1/-1;
-  grid-row: 1/78;
-  width: 280px;
-  height: auto;
+main .cta-beta .avatar {
   display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 280/280;
   margin: 0 auto;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
-  main .cta-beta .header {
-    grid-column: 1/span 8;
-    justify-self: end;
+  main .cta-beta .avatar {
+    float: left;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
 main .cta-beta .content {
+  margin-top: -47px;
   width: 100%;
   padding: 32px;
-  grid-column: 1/-1;
-  grid-row: 78/-2;
-  background-color: #24053E;
+  background-color: #24053e;
   color: #fff;
   text-align: center;
+  position: relative;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
   main .cta-beta .content {
-    grid-column: 6/-1;
-    grid-row: 49/-9;
-    padding: 48px;
+    max-width: 504px;
     text-align: left;
+    float: right;
+    transform: translate(-7%, -17%);
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+main .cta-beta .content {
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 768px) {
+  main .cta-beta .content {
+    max-width: 730px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -525,7 +576,6 @@ main .cta-beta .content .btn-primary {
   margin-block-start: 32px;
   padding: 12px 32px;
   background-color: #44ffa1;
-  margin-block-end: 32px;
   transition: 0.3s;
 }
 main .cta-beta .content .btn-primary:hover {
@@ -543,8 +593,8 @@ main .cta-beta {
   }
   main .cta-beta .hero-bottom {
     position: absolute;
-    bottom: -13%;
-    right: 3%;
+    bottom: -6%;
+    right: 10%;
     width: 200px;
     height: 200px;
     background-image: url(../images/bg-pattern-3.svg);
@@ -555,21 +605,17 @@ main .cta-beta {
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
-main .cta-beta {
+
+footer {
+  margin-block-start: 80px;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
-  main .cta-beta .hero-bottom {
-    right: 11%;
-  }
-  main .cta-beta {
+  footer {
+    margin-block-start: 0;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
-}
-
-footer {
-  margin-block-start: 80px;
 }
 footer img {
   width: 95.76;
