@@ -621,6 +621,7 @@ footer ul {
   margin-block-start: 56px;
   display: flex;
   justify-content: center;
+  gap: 1.75rem;
 }
 footer ul li {
   flex: 1;
