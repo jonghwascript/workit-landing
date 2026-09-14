@@ -5,7 +5,7 @@
 @use 'mixins' as m; // _mixins.scss 파일이 같은 폴더에 있는 경우
 
 button:focus-visible {
-  outline: 2px solid var(--Grey-500);
+  outline: 2px solid $green-color;
   outline-offset: 2px;
 }
 
@@ -151,13 +151,14 @@ header {
         font-size: 16px;
         color: $solate-color-900;
         padding: 12px 32px;
+        border: 1px solid transparent;
         background-color: $green-color;
         transition: 0.3s;
         position: relative;
         z-index: 15;
 
         &:hover {
-          border: 1px solid $green-color;
+          border-color: $green-color;
           color: $green-color;
           background-color: transparent;
         }
@@ -405,11 +406,12 @@ main {
       .btn-primary {
         margin-block-start: 32px;
         padding: 12px 32px;
+        border: 1px solid transparent;
         background-color: $green-color;
         transition: 0.3s;
 
         &:hover {
-          border: 1px solid $green-color;
+          border-color: $green-color;
           color: $green-color;
           background-color: transparent;
         }

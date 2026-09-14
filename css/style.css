@@ -109,7 +109,7 @@ table {
 }
 
 button:focus-visible {
-  outline: 2px solid var(--Grey-500);
+  outline: 2px solid #44ffa1;
   outline-offset: 2px;
 }
 
@@ -261,13 +261,14 @@ header .hero .hero-content .hero-btn {
   font-size: 16px;
   color: #24053e;
   padding: 12px 32px;
+  border: 1px solid transparent;
   background-color: #44ffa1;
   transition: 0.3s;
   position: relative;
   z-index: 15;
 }
 header .hero .hero-content .hero-btn:hover {
-  border: 1px solid #44ffa1;
+  border-color: #44ffa1;
   color: #44ffa1;
   background-color: transparent;
 }
@@ -572,11 +573,12 @@ main .cta-beta .content .description {
 main .cta-beta .content .btn-primary {
   margin-block-start: 32px;
   padding: 12px 32px;
+  border: 1px solid transparent;
   background-color: #44ffa1;
   transition: 0.3s;
 }
 main .cta-beta .content .btn-primary:hover {
-  border: 1px solid #44ffa1;
+  border-color: #44ffa1;
   color: #44ffa1;
   background-color: transparent;
 }

@@ -12,6 +12,7 @@ This is a solution to the [Workit landing page challenge on Frontend Mentor](htt
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
+  - [Review fixes](#review-fixes)
   - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
@@ -139,6 +140,16 @@ Finally, I learned that percentages inside `transform: translate()` are based on
 I want to keep improving how I handle decorative assets across tablet and desktop breakpoints. In particular, I want to get more comfortable choosing between fixed pixel offsets, viewport units, percentages, and `calc()` so decorative images stay intentional instead of drifting too far as the screen grows.
 
 I also want to continue refining accessibility details, including meaningful labels for interactive links, focus states, and hidden headings for sections that need semantic names.
+
+- [ ] Rework the hero layout so the phone image stays in normal flow and can grow at tablet and desktop sizes beyond its current `max-width: 320px`. Replace the fixed header heights and the image-dependent `.features` padding (`calc(184px / 2 + 64px)`) with content-driven spacing. Review `main`'s negative margin, curve placement, and overflow together, keeping decorative curves separate from content flow. Compare against the design and check all viewport sizes before finalizing image dimensions. This is a reviewed follow-up task; no hero layout changes have been made yet.
+
+### Review fixes
+
+- Fixed button keyboard focus outlines by replacing the undefined CSS custom property `var(--Grey-500)` with the Sass variable `$green-color` (`#44ffa1`), retaining a 2px outline and 2px offset.
+- Added `alt="Workit"` to the header logo and the page description: "Workit turns your product data into actionable insights."
+- Prevented `.hero-btn` and `.btn-primary` from growing on hover by reserving a transparent 1px border in their base styles and changing only its color on hover.
+- Included the existing Sass gray palette additions (`$grey-100` through `$grey-500`). These Sass variables do not define CSS custom properties.
+- Regenerated the CSS and source map. Sass compilation and `git diff --check` passed; browser and screen reader verification remain outstanding.
 
 ### Useful resources
 
