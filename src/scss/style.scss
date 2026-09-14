@@ -1,8 +1,8 @@
-@use 'fonts'as *;
-@use 'reset'as *;
-@use 'variables'as *;
-@use 'utilities'as *;
-@use 'mixins'as m; // _mixins.scss 파일이 같은 폴더에 있는 경우
+@use 'fonts' as *;
+@use 'reset' as *;
+@use 'variables' as *;
+@use 'utilities' as *;
+@use 'mixins' as m; // _mixins.scss 파일이 같은 폴더에 있는 경우
 
 button:focus-visible {
   outline: 2px solid var(--Grey-500);
@@ -17,7 +17,6 @@ body {
 .container {
   @include m.container(1110px, 24px);
 }
-
 
 header,
 main,
@@ -49,8 +48,7 @@ header {
   @include m.mq('tablet') {
     background-image:
       url('../images/bg-pattern-1.svg'),
-      /* 1번 이미지 */
-      url('../images/bg-pattern-2.svg');
+      /* 1번 이미지 */ url('../images/bg-pattern-2.svg');
     /* 2번 이미지 */
 
     /* 위치 지정 */
@@ -59,13 +57,9 @@ header {
       right -9vw top 81%;
 
     /* 반복 및 크기 지정 */
-    background-repeat:
-      no-repeat,
-      no-repeat;
+    background-repeat: no-repeat, no-repeat;
 
-    background-size:
-      270px,
-      141px;
+    background-size: 270px, 141px;
   }
 
   @include m.mq('desktop') {
@@ -116,12 +110,12 @@ header {
   }
 
   .hero {
-
     color: $white-color;
     border-radius: 0 0 15px 15px;
     overflow: hidden;
 
-    @include m.mq('tablet') {}
+    @include m.mq('tablet') {
+    }
 
     .hero-content {
       margin-block-start: 56px;
@@ -276,7 +270,6 @@ main {
           @include m.mq('tablet') {
             flex: 1 1 0;
             min-width: 0;
-            word-break: break-all;
             text-align: left;
           }
 
@@ -344,7 +337,6 @@ main {
       left: 50%;
       transform: translateX(-50%);
     }
-
   }
 
   .cta-beta {
@@ -367,11 +359,11 @@ main {
 
       @include m.mq('tablet') {
         grid-column: 1 / 9;
-        grid-row:  1;
+        grid-row: 1;
       }
       @include m.mq('desktop') {
         grid-column: 1 / 9;
-        grid-row:  1;
+        grid-row: 1;
       }
     }
 
@@ -450,7 +442,7 @@ footer {
   margin-block-start: 80px;
 
   img {
-    width: 95.76;
+    width: 95.76px;
     height: auto;
     display: block;
     margin: 0 auto;

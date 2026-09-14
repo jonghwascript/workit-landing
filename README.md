@@ -1,103 +1,146 @@
-# Frontend Mentor - Workit landing page
+# Frontend Mentor - Workit Landing Page Solution
 
-![Design preview for the Workit landing page coding challenge](./preview.jpg)
+This is a solution to the [Workit landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/workit-landing-page-2fYnyle5lu). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for purchasing this premium Frontend Mentor coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects. These premium challenges are perfect portfolio pieces, so please feel free to use what you create in your portfolio to show others.
+## Overview
 
-**To do this challenge, you need a decent understanding of HTML and CSS.**
+### The challenge
 
-## The challenge
+Users should be able to:
 
-Your challenge is to build out this landing page and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
-
-- View the optimal layout for the interface depending on their device's screen size
+- View the optimal layout for the landing page depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-### Want some support on the challenge?
+### Screenshot
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+![Design preview for the Workit landing page](./preview.jpg)
 
-## Where to find everything
+### Links
 
-Your task is to build out the project to the design file provided. You can download the Figma design file on the platform. You can download the design file on the platform. **Please be sure not to share them with anyone else.** The design download comes with a `README.md` file as well to help you get set up.
+- Solution URL: [Repository](https://https://github.com/jonghwascript/workit-landing.git)
+- Live Site URL: [Live site](https://jonghwascript.github.io/workit-landing)
 
-All the required assets for this project are in the `/assets` folder. The images are already exported for the correct screen size and optimized. Some are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
+## My process
 
-We also include variable and static font files for the required fonts for this project. You can choose to either link to Google Fonts or use the local font files to host the fonts yourself. Note that we've removed the static font files for the font weights that aren't needed for this project.
+### Built with
 
-The design system in the design file will give you more information about the various colors, fonts, and styles used in this project. Our fonts always come from [Google Fonts](https://fonts.google.com/).
+- Semantic HTML5 markup
+- SCSS modules with `@use`
+- CSS custom properties and Sass variables
+- Flexbox
+- CSS Grid
+- Mobile-first responsive workflow
+- Local font files
+- Gulp, Sass, and Prettier
 
-## Using AI coding assistants
+### What I learned
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+This project helped me practice responsive layout details that are easy to overlook in a landing page: decorative curves, layered background images, fluid hero artwork, and accessible section structure.
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+I used `clip-path` to create the curved section edges without adding extra image assets:
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+```scss
+.hero-curve {
+  clip-path: ellipse(70% 30% at 45% 51%);
+}
+```
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+I also learned that `background-clip: content-box` can exclude padding from the painted background area:
 
-## Building your project
+```scss
+header {
+  padding-bottom: 30px;
+  background-clip: content-box;
+}
+```
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+For cases where only the bottom padding should be excluded from a section background, a pseudo-element is more flexible than changing the HTML structure:
 
-1. Separate the `starter-code` from the rest of this project and rename it to something meaningful for you. Initialize the codebase as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/). **⚠️ IMPORTANT ⚠️: There are already a couple of `.gitignore` files in this project. Please do not remove them or change the content of the files. If you create a brand new project, please use the `.gitignore` files provided in your new codebase. This is to avoid the accidental upload of the design files to GitHub. With these premium challenges, please be sure not to share the design files in your GitHub repo. Thanks!**
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+```scss
+.section {
+  position: relative;
+  padding: 40px 20px 80px;
+  z-index: 1;
+}
 
-## Deploying your project
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 100px;
+  background-color: $solate-color-100;
+  z-index: -1;
+}
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+For responsive images, I used a flexible width with a maximum size and `aspect-ratio` so the browser can reserve the correct space before the image loads:
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+```scss
+.hero-center {
+  width: calc(100% - 2.5rem);
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 320 / 184;
+}
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+Another useful detail was using `em` to make an underline scale from the current text size:
 
-## Create a custom `README.md`
+```scss
+.underline::after {
+  width: 3.14em;
+}
+```
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+I also practiced placing multiple decorative background images on one element with comma-separated background layers:
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+```scss
+header {
+  background-image:
+    url('../images/bg-pattern-1.svg'),
+    url('../images/bg-pattern-2.svg');
+  background-repeat: no-repeat, no-repeat;
+}
+```
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+Finally, I learned that percentages inside `transform: translate()` are based on the transformed element itself, not the viewport. When the movement should follow the viewport size, `vw`, `vh`, or `calc()` can create smoother responsive positioning.
 
-## Submitting your solution
+```scss
+.decorative-pattern {
+  transform: translate(calc(-50% - 7vw), calc(-50% - 17vh));
+}
+```
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+### Continued development
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+I want to keep improving how I handle decorative assets across tablet and desktop breakpoints. In particular, I want to get more comfortable choosing between fixed pixel offsets, viewport units, percentages, and `calc()` so decorative images stay intentional instead of drifting too far as the screen grows.
 
-**⚠️ IMPORTANT ⚠️: With these premium challenges, please be sure not to upload the design files to GitHub when you're submitting to the platform and sharing it around. If you've created a brand new project, the easiest way to do that is to copy across the `.gitignore` provided in this starter project.**
+I also want to continue refining accessibility details, including meaningful labels for interactive links, focus states, and hidden headings for sections that need semantic names.
 
-## Sharing your solution
+### Useful resources
 
-There are multiple places you can share your solution:
+- [MDN - clip-path](https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path) - Useful for understanding how CSS shapes can create curved section edges.
+- [MDN - background-clip](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip) - Helped clarify how backgrounds are painted relative to borders, padding, and content.
+- [MDN - aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) - Useful for keeping responsive images stable while preserving their intended proportions.
+- [MDN - transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) - Helped clarify how percentage values behave inside transforms.
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+### AI Collaboration
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+I used ChatGPT as a learning partner while building and reviewing this project. The most helpful parts were discussing responsive CSS behavior, clarifying how layout units behave, improving semantic HTML structure, and reviewing small project metadata issues.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+## Author
 
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@jonghwascript](https://www.frontendmentor.io/profile/jonghwascript)

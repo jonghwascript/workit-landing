@@ -1,8 +1,7 @@
 {
-  "name": "newsletter-sign-up-with-success-message",
+  "name": "workit-landing-page",
   "version": "1.0.0",
-  "description": "![Design preview for the Newsletter sign-up form with success message coding challenge](./preview.jpg)",
-  "main": "index.js",
+  "description": "Frontend Mentor Workit landing page challenge",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "gulp prettier"

@@ -406,7 +406,6 @@ main .features .feature-list .feature-item .text-group {
   main .features .feature-list .feature-item .text-group {
     flex: 1 1 0;
     min-width: 0;
-    word-break: break-all;
     text-align: left;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
@@ -627,7 +626,7 @@ footer {
   margin-block-start: 80px;
 }
 footer img {
-  width: 95.76;
+  width: 95.76px;
   height: auto;
   display: block;
   margin: 0 auto;
