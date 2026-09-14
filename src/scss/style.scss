@@ -63,10 +63,13 @@ header {
   }
 
   @include m.mq('desktop') {
-    /* 위치 지정 */
+    background-image:
+      url('../images/bg-pattern-1.svg'), url('../images/bg-pattern-2.svg');
     background-position:
-      left -10vw top 28%,
-      right -5vw top 81%;
+      left clamp(-140px, -10vw, -80px) top 28%,
+      right clamp(-72px, -5vw, -32px) top 81%;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 270px, 141px;
   }
 
   nav {

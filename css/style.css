@@ -190,8 +190,10 @@ header {
 }
 @media (min-width: 1024px) {
   header {
-    /* 위치 지정 */
-    background-position: left -10vw top 28%, right -5vw top 81%;
+    background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
+    background-position: left clamp(-140px, -10vw, -80px) top 28%, right clamp(-72px, -5vw, -32px) top 81%;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 270px, 141px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }

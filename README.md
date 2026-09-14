@@ -116,6 +116,16 @@ header {
 }
 ```
 
+For desktop decorative patterns, I learned that `clamp()` is a good way to combine fluid viewport-based movement with practical limits. A plain `vw` value can push a background image too far off screen on wider layouts, while a fixed pixel value can feel too static. `clamp()` keeps the position responsive without letting it drift past the intended range.
+
+```scss
+header {
+  background-position:
+    left clamp(-140px, -10vw, -80px) top 28%,
+    right clamp(-72px, -5vw, -32px) top 81%;
+}
+```
+
 Finally, I learned that percentages inside `transform: translate()` are based on the transformed element itself, not the viewport. When the movement should follow the viewport size, `vw`, `vh`, or `calc()` can create smoother responsive positioning.
 
 ```scss
