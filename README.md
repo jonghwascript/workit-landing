@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Repository](https://https://github.com/jonghwascript/workit-landing.git)
+- Solution URL: [Repository](https://github.com/jonghwascript/workit-landing.git)
 - Live Site URL: [Live site](https://jonghwascript.github.io/workit-landing)
 
 ## My process
