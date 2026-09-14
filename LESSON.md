@@ -107,3 +107,187 @@ transform: translate(-7vw, -17vh);
 transform: translate(calc(-50% - 7vw), calc(-50% - 17vh));
 
 ```
+
+174~177라인은 한꺼번에 외우기보다, `::before`로 장식용 도형을 만드는 예제로 공부하면 좋습니다.
+
+```scss
+inset: 0 0 45%;
+border-radius: 0 0 50% 50% / 0 0 32px 32px;
+background-color: $solate-color-900;
+pointer-events: none;
+```
+
+각 줄을 풀면 다음과 같습니다.
+
+### 174라인: `inset`
+
+```scss
+inset: 0 0 45%;
+```
+
+`position: absolute` 요소의 위치를 지정하는 축약 속성입니다.
+
+값이 3개이면 다음처럼 해석합니다.
+
+```scss
+inset: top right bottom;
+```
+
+따라서 실제 의미는:
+
+```scss
+top: 0;
+right: 0;
+bottom: 45%;
+left: 0;
+```
+
+가상 요소가 부모의 위·왼쪽·오른쪽에는 붙고, 아래에서는 부모 높이의 `45%`만큼 떨어집니다.
+
+공부할 때는 먼저 4개 값을 모두 적어보세요.
+
+```scss
+inset: 0 0 45% 0;
+```
+
+### 175라인: `border-radius` 고급 문법
+
+```scss
+border-radius: 0 0 50% 50% / 0 0 32px 32px;
+```
+
+`/` 앞은 모서리의 가로 반지름이고, `/` 뒤는 세로 반지름입니다.
+
+```text
+가로 반지름 / 세로 반지름
+```
+
+네 값의 모서리 순서는 다음과 같습니다.
+
+```text
+왼쪽 위 → 오른쪽 위 → 오른쪽 아래 → 왼쪽 아래
+```
+
+따라서 위쪽 모서리는 각지게 유지하고, 아래쪽 두 모서리만 둥글게 만듭니다. 그 결과 아래쪽이 활처럼 휘어진 배경이 만들어집니다.
+
+이 속성은 직접 값을 바꿔보는 것이 가장 좋습니다.
+
+```scss
+border-radius: 0;
+border-radius: 0 0 50% 50%;
+border-radius: 0 0 50% 50% / 0 0 32px 32px;
+border-radius: 0 0 50% 50% / 0 0 100px 100px;
+```
+
+특히 마지막의 `32px`을 키우면서 곡선이 얼마나 깊어지는지 확인해 보세요.
+
+### 176라인: 배경색
+
+```scss
+background-color: $solate-color-900;
+```
+
+가상 요소의 배경색을 SCSS 변수에 저장된 진한 보라색으로 지정합니다.
+
+```scss
+$solate-color-900: #24053e;
+```
+
+가상 요소는 내용이 없기 때문에 `inset`으로 크기를 만들고, 이 속성으로 실제 색을 보이게 합니다.
+
+### 177라인: 클릭 방해 방지
+
+```scss
+pointer-events: none;
+```
+
+가상 요소가 마우스 클릭이나 터치의 대상이 되지 않게 합니다. 장식용 요소가 버튼이나 링크 위를 덮더라도 사용자 입력을 가로채지 않습니다.
+
+공부 순서는 이렇게 잡으면 됩니다.
+
+1. `position: relative`와 `position: absolute`
+2. `top/right/bottom/left`
+3. 그것의 축약형인 `inset`
+4. `border-radius` 기본 문법
+5. `/`를 사용하는 타원형 `border-radius`
+6. `::before`와 `content`
+7. `z-index`, `isolation`, `pointer-events`
+
+이 코드를 이해하는 핵심 문장은 다음입니다.
+
+> 부모를 기준으로 가상 요소의 크기를 만든 다음, 아래 모서리를 곡선으로 만들고, 배경색을 칠한 장식 요소가 클릭을 방해하지 않게 한다.
+
+
+이런 CSS를 처음부터 외워서 작성한다고 생각할 필요는 없습니다. 완성하려는 모양을 **작은 문제로 나누어 생각하는 방식**이 핵심입니다.
+
+이번 코드는 다음 흐름으로 나온 것입니다.
+
+1. “이미지 뒤에 보라색 배경이 필요하다.”
+2. “HTML 요소를 추가하지 않고 장식만 만들고 싶다.”
+   → `::before`
+3. “장식을 `.hero-art` 기준으로 배치해야 한다.”
+   → 부모는 `position: relative`, 장식은 `position: absolute`
+4. “위와 양옆은 부모에 붙이고, 높이는 조금 줄인다.”
+   → `inset: 0 0 45%`
+5. “장식 아래쪽만 휘어야 한다.”
+   → 아래 모서리에만 `border-radius`
+6. “이미지보다 뒤에 있어야 한다.”
+   → `z-index: -1`, `isolation: isolate`
+7. “장식이 클릭을 막으면 안 된다.”
+   → `pointer-events: none`
+
+즉, 처음부터 아래 코드를 통째로 떠올리는 게 아닙니다.
+
+```scss
+&::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 45%;
+  border-radius: 0 0 50% 50% / 0 0 32px 32px;
+  background-color: $solate-color-900;
+  pointer-events: none;
+  z-index: -1;
+}
+```
+
+먼저 가장 단순한 사각형부터 만듭니다.
+
+```scss
+.hero-art {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: purple;
+  }
+}
+```
+
+그다음 하나씩 수정합니다.
+
+```scss
+// 높이를 줄인다
+inset: 0 0 45%;
+
+// 아래를 둥글게 만든다
+border-radius: 0 0 50% 50%;
+
+// 곡선의 깊이를 조절한다
+border-radius: 0 0 50% 50% / 0 0 32px 32px;
+
+// 콘텐츠 뒤로 보낸다
+z-index: -1;
+```
+
+앞으로 디자인을 볼 때는 다음 네 가지 질문을 먼저 해보세요.
+
+- 이 모양은 실제 콘텐츠인가, 장식인가?
+- 어떤 요소를 기준으로 배치해야 하는가?
+- 사각형에서 무엇을 바꾸면 이 모양이 되는가?
+- 앞에 있어야 하는가, 뒤에 있어야 하는가?
+
+가장 좋은 연습 방법은 개발자 도구에서 속성을 하나씩 껐다 켜는 것입니다. 특히 `inset`, `border-radius`, `z-index`를 각각 비활성화하면 각 코드가 왜 필요한지 바로 보입니다.
+
+CSS는 “정답 코드를 떠올리는 능력”보다 **사각형을 만들고 조금씩 원하는 모양으로 변형하는 능력**에 가깝습니다.

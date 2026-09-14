@@ -137,10 +137,7 @@ header {
 @media (min-width: 768px) {
   header {
     background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
-    /* 2번 이미지 */
-    /* 위치 지정 */
     background-position: left -22vw top 28%, right -9vw top 40%;
-    /* 반복 및 크기 지정 */
     background-repeat: no-repeat, no-repeat;
     background-size: 270px, 141px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
@@ -155,7 +152,7 @@ header {
     background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
     background-position: left clamp(-140px, -10vw, -80px) top 28%, right clamp(-72px, -5vw, -32px) top 40%;
     background-repeat: no-repeat, no-repeat;
-    background-size: 270px, 141px;
+    background-size: 270px auto, 141px auto;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -176,7 +173,7 @@ header nav .nav-btn {
   margin-left: auto;
   color: #fff;
   font-family: "manrope-bold";
-  font-size: 18px;
+  font-size: 1.125rem;
   position: relative;
 }
 header nav .nav-btn::after {
@@ -184,7 +181,7 @@ header nav .nav-btn::after {
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 151px;
+  width: 9.4375rem;
   height: 3px;
   transform: translateX(-50%);
   background-color: #44ffa1;
@@ -198,22 +195,21 @@ header nav .nav-btn:hover {
 header .hero {
   color: #fff;
   display: grid;
-  gap: 48px;
 }
 header .hero .hero-content {
-  margin-block-start: 56px;
-  padding-inline: 20px;
+  margin-block-start: 3.5rem;
+  padding-inline: 1.25rem;
 }
 header .hero .hero-content .title {
   font-family: "fraunces-bold";
-  font-size: 48px;
+  font-size: 3rem;
   text-align: center;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
 @media (min-width: 768px) {
   header .hero .hero-content .title {
-    font-size: 60px;
+    font-size: 3.75rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -237,9 +233,9 @@ header .hero .hero-content {
   text-align: center;
 }
 header .hero .hero-content .hero-btn {
-  margin-block-start: 40px;
+  margin-block-start: 2.5rem;
   font-family: "manrope-bold";
-  font-size: 16px;
+  font-size: 1rem;
   color: #24053e;
   padding: 12px 32px;
   border: 1px solid transparent;
@@ -253,12 +249,33 @@ header .hero .hero-content .hero-btn:hover {
   color: #44ffa1;
   background-color: transparent;
 }
-header .hero-art {
+header .hero .hero-art {
+  margin-block-start: 17vw;
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 768px) {
+  header .hero .hero-art {
+    margin-block-start: 40px;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+header .hero .hero-art {
+  /* 맵에 해당 기기 이름이 있는지 확인 */
+  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
+}
+@media (min-width: 1024px) {
+  header .hero .hero-art {
+    margin-block-start: 88px;
+    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
+  }
+}
+header .hero .hero-art {
   position: relative;
   isolation: isolate;
   background-color: #fcf8ff;
 }
-header .hero-art::before {
+header .hero .hero-art::before {
   content: "";
   position: absolute;
   inset: 0 0 45%;
@@ -267,7 +284,7 @@ header .hero-art::before {
   pointer-events: none;
   z-index: -1;
 }
-header .hero-center {
+header .hero .hero-art .hero-center {
   width: calc(100% - 2.5rem);
   max-width: clamp(320px, 50vw, 767px);
   margin-inline: auto;
@@ -277,12 +294,12 @@ header .hero-center {
 
 main .features {
   padding-top: clamp(64px, 7vw, 112px);
-  padding-bottom: 200px;
+  padding-bottom: 12.5rem;
   position: relative;
   z-index: 1;
 }
 main .features .feature-list {
-  width: min(1110px, 100% - 48px);
+  width: min(69.375rem, 100% - 3rem);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -294,7 +311,7 @@ main .features .feature-list {
 @media (min-width: 1024px) {
   main .features .feature-list {
     flex-direction: row;
-    gap: 32px;
+    gap: 2rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -309,7 +326,7 @@ main .features .feature-list .feature-item {
 @media (min-width: 768px) {
   main .features .feature-list .feature-item {
     flex-direction: row;
-    gap: 56px;
+    gap: 3.5rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -325,13 +342,13 @@ main .features .feature-list .feature-item {
   }
 }
 main .features .feature-list .feature-item .number {
-  width: min(48px, 100%);
-  height: min(48px, 100%);
+  width: min(3rem, 100%);
+  height: min(3rem, 100%);
   font-family: "fraunces-bold";
   border-radius: 50%;
   border: 1px solid #584d62;
   text-align: center;
-  line-height: 48px;
+  line-height: 3rem;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -365,15 +382,15 @@ main .features .feature-list .feature-item .text-group {
   }
 }
 main .features .feature-list .feature-item .text-group .title {
-  margin-block-start: 24px;
+  margin-block-start: 1.5rem;
   font-family: "fraunces-bold";
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #24053e;
 }
 main .features .feature-list .feature-item .text-group .description {
-  margin-block-start: 16px;
+  margin-block-start: 1rem;
   font-family: "manrope-regular";
-  font-size: 16px;
+  font-size: 1rem;
   text-align: center;
   color: #24053e;
   /* 맵에 해당 기기 이름이 있는지 확인 */
@@ -396,7 +413,7 @@ main .features .feature-list .feature-item .text-group .description {
   }
 }
 main .features .feature-list .feature-item:not(:first-child) {
-  margin-block-start: 32px;
+  margin-block-start: 2rem;
 }
 main .features .feature-list {
   /* 맵에 해당 기기 이름이 있는지 확인 */
@@ -416,12 +433,9 @@ main .features::before {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 100px;
-  /* 아래쪽 패딩 크기만큼 띄움 -> 배경색 제외 효과 */
+  bottom: 6.25rem;
   background-color: #fcf8ff;
-  /* 원하는 배경색 */
   z-index: -1;
-  /* 콘텐츠 뒤로 보내기 */
 }
 main .features .features-curve {
   clip-path: ellipse(70% 30% at 45% 51%);
@@ -434,9 +448,9 @@ main .features .features-curve {
   transform: translateX(-50%);
 }
 main .cta-beta {
-  width: min(1110px, 100% - 48px);
+  width: min(69.375rem, 100% - 3rem);
   margin-inline: auto;
-  margin-block-start: 122px;
+  margin-block-start: 7.625rem;
   position: relative;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
@@ -454,8 +468,8 @@ main .cta-beta .avatar {
   width: 100%;
   max-width: 280px;
   height: auto;
-  aspect-ratio: 280/280;
-  margin: 0 auto;
+  aspect-ratio: 1/1;
+  margin-inline: auto;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -480,7 +494,7 @@ main .cta-beta .avatar {
 main .cta-beta .content {
   margin-top: -47px;
   width: 100%;
-  padding: 32px;
+  padding: 2rem;
   background-color: #24053e;
   color: #fff;
   text-align: center;
@@ -491,9 +505,10 @@ main .cta-beta .content {
 }
 @media (min-width: 768px) {
   main .cta-beta .content {
+    text-align: left;
     grid-column: 6/-1;
     grid-row: 1;
-    margin-top: 161px;
+    margin-top: 10.0625rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -505,7 +520,7 @@ main .cta-beta .content {
   main .cta-beta .content {
     grid-column: 7/-1;
     grid-row: 1;
-    margin-top: 106px;
+    margin-top: 6.625rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -516,12 +531,12 @@ main .cta-beta .content .title {
 }
 @media (min-width: 768px) {
   main .cta-beta .content .title {
-    font-size: 48px;
+    font-size: 3rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
 main .cta-beta .content .description {
-  margin-top: 32px;
+  margin-top: 2rem;
   font-family: manrope-regular;
   line-height: 1.8;
   /* 맵에 해당 기기 이름이 있는지 확인 */
@@ -529,13 +544,13 @@ main .cta-beta .content .description {
 }
 @media (min-width: 768px) {
   main .cta-beta .content .description {
-    font-size: 16px;
+    font-size: 1rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
 main .cta-beta .content .btn-primary {
-  margin-block-start: 32px;
-  padding: 12px 32px;
+  margin-block-start: 2rem;
+  padding: 0.75rem 2rem;
   border: 1px solid transparent;
   background-color: #44ffa1;
   transition: 0.3s;
@@ -570,9 +585,9 @@ main .cta-beta {
 }
 
 footer {
-  width: min(1110px, 100% - 48px);
+  width: min(69.375rem, 100% - 3rem);
   margin-inline: auto;
-  margin-block-start: 80px;
+  margin-block-start: 5rem;
 }
 footer img {
   width: 95.76px;
@@ -583,7 +598,7 @@ footer img {
 footer ul {
   width: 116px;
   margin: 0 auto;
-  margin-block-start: 56px;
+  margin-block-start: 3.5rem;
   display: flex;
   justify-content: center;
   gap: 1.75rem;
@@ -592,6 +607,7 @@ footer ul li {
   flex: 1;
 }
 footer ul {
-  margin-block-end: 80px;
+  margin-block-end: 5rem;
 }
+
 /*# sourceMappingURL=style.css.map */

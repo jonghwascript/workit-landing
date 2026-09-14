@@ -30,16 +30,14 @@ header {
 
   @include m.mq('tablet') {
     background-image:
-      url('../images/bg-pattern-1.svg'),
-      /* 1번 이미지 */ url('../images/bg-pattern-2.svg');
-    /* 2번 이미지 */
+      url('../images/bg-pattern-1.svg'), url('../images/bg-pattern-2.svg'); // 1번, 2번 이미지
 
-    /* 위치 지정 */
+    // 위치 지정
     background-position:
       left -22vw top 28%,
       right -9vw top 40%;
 
-    /* 반복 및 크기 지정 */
+    // 반복 및 크기 지정
     background-repeat: no-repeat, no-repeat;
 
     background-size: 270px, 141px;
@@ -52,7 +50,9 @@ header {
       left clamp(-140px, -10vw, -80px) top 28%,
       right clamp(-72px, -5vw, -32px) top 40%;
     background-repeat: no-repeat, no-repeat;
-    background-size: 270px, 141px;
+    background-size:
+      270px auto,
+      141px auto;
   }
 
   nav {
@@ -73,15 +73,16 @@ header {
       margin-left: auto;
       color: $white-color;
       font-family: 'manrope-bold';
-      font-size: 18px;
+      font-size: 1.125rem;
       position: relative;
 
+      // 밑줄 처리
       &::after {
         content: '';
         position: absolute;
         left: 50%;
         bottom: 0;
-        width: 151px;
+        width: 9.4375rem;
         height: 3px;
         transform: translateX(-50%);
         background-color: $green-color;
@@ -95,22 +96,22 @@ header {
     }
   }
 
+  // 럭비공 모양 배경 처리
   .hero {
     color: $white-color;
     display: grid;
-    gap: 48px;
 
     .hero-content {
-      margin-block-start: 56px;
-      padding-inline: 20px;
+      margin-block-start: 3.5rem;
+      padding-inline: 1.25rem;
 
       .title {
         font-family: 'fraunces-bold';
-        font-size: 48px;
+        font-size: 3rem;
         text-align: center;
 
         @include m.mq('tablet') {
-          font-size: 60px;
+          font-size: 3.75rem;
         }
 
         .underline {
@@ -136,9 +137,9 @@ header {
       text-align: center;
 
       .hero-btn {
-        margin-block-start: 40px;
+        margin-block-start: 2.5rem;
         font-family: 'manrope-bold';
-        font-size: 16px;
+        font-size: 1rem;
         color: $solate-color-900;
         padding: 12px 32px;
         border: 1px solid transparent;
@@ -155,43 +156,67 @@ header {
       }
     }
 
-  }
+    // 부모를 기준으로 가상 요소의 크기를 만든 다음, 아래 모서리를 곡선으로 만들고,
+    // 배경색을 칠한 장식 요소가 클릭을 방해하지 않게 한다.
+    .hero-art {
+      // 모바일 기준 화면 너비의 17%만큼 위쪽 여백을 설정한다.
+      margin-block-start: 17vw;
 
-  .hero-art {
-    position: relative;
-    isolation: isolate;
-    background-color: $solate-color-100;
+      @include m.mq('tablet') {
+        margin-block-start: 40px;
+      }
 
-    // Only the decoration is out of flow; the image sizes this wrapper.
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 45%;
-      border-radius: 0 0 50% 50% / 0 0 32px 32px;
-      background-color: $solate-color-900;
-      pointer-events: none;
-      z-index: -1;
+      @include m.mq('desktop') {
+        margin-block-start: 88px;
+      }
+      position: relative;
+      // .hero-art와 그 가상 요소만 사용하는 독립적인 z-index 공간을 만든다.
+      isolation: isolate;
+      background-color: $solate-color-100;
+
+      // Only the decoration is out of flow; the image sizes this wrapper.
+      &::before {
+        content: '';
+        position: absolute;
+        // top right bottom
+        inset: 0 0 45%; // 부모의 높이에서 45% 떨어진다.
+        // 위쪽 모서리는 각지게 유지하고, 아래쪽 두 모서리만 둥글게 만든다.
+        border-radius: 0 0 50% 50% / 0 0 32px 32px;
+        background-color: $solate-color-900;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .hero-center {
+        //실제 너비는 188라인의 width와 189라인의 max-width 중 더 작은 값을 따릅니다.
+        width: calc(
+          100% - 2.5rem
+        ); // 부모 너비에서 2.5rem(40px)을 뺀 값을 이미지 너비로 사용
+        // 화면 너비의 50%
+        // 화면 375px → 50vw = 187.5px → 최소 제한으로 320px
+        // 화면 768px → 50vw = 384px
+        // 화면 1440px → 50vw = 720px
+        // 화면 1920px → 50vw = 960px → 최대 제한으로 767px
+        max-width: clamp(320px, 50vw, 767px);
+        // 왼쪽과 오른쪽 외부 여백을 자동으로 나눠 가져서 이미지를 가로 중앙에 배치합니다.
+        margin-inline: auto;
+        height: auto;
+        aspect-ratio: 320 / 184;
+      }
     }
-  }
-
-  .hero-center {
-    width: calc(100% - 2.5rem);
-    max-width: clamp(320px, 50vw, 767px);
-    margin-inline: auto;
-    height: auto;
-    aspect-ratio: 320 / 184;
   }
 }
 
 main {
   .features {
     padding-top: clamp(64px, 7vw, 112px);
-    padding-bottom: 200px;
+    padding-bottom: 12.5rem;
     position: relative;
+    // 다른 요소보다 .features 전체를 앞으로 올릴 필요가 있다.
     z-index: 1;
 
     .feature-list {
-      @include m.container(1110px, 24px);
+      @include m.container(69.375rem, 1.5rem);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -199,7 +224,7 @@ main {
 
       @include m.mq('desktop') {
         flex-direction: row;
-        gap: 32px;
+        gap: 2rem;
       }
 
       .feature-item {
@@ -210,7 +235,7 @@ main {
 
         @include m.mq('tablet') {
           flex-direction: row;
-          gap: 56px;
+          gap: 3.5rem;
         }
 
         @include m.mq('desktop') {
@@ -219,13 +244,13 @@ main {
         }
 
         .number {
-          width: min(48px, 100%);
-          height: min(48px, 100%);
+          width: min(3rem, 100%);
+          height: min(3rem, 100%);
           font-family: 'fraunces-bold';
           border-radius: 50%;
           border: 1px solid $solate-color-500;
           text-align: center;
-          line-height: 48px;
+          line-height: 3rem;
 
           @include m.mq('tablet') {
             flex: 0 1 auto;
@@ -246,16 +271,16 @@ main {
           }
 
           .title {
-            margin-block-start: 24px;
+            margin-block-start: 1.5rem;
             font-family: 'fraunces-bold';
-            font-size: 24px;
+            font-size: 1.5rem;
             color: $solate-color-900;
           }
 
           .description {
-            margin-block-start: 16px;
+            margin-block-start: 1rem;
             font-family: 'manrope-regular';
-            font-size: 16px;
+            font-size: 1rem;
             text-align: center;
             color: $solate-color-900;
 
@@ -271,7 +296,7 @@ main {
       }
 
       .feature-item:not(:first-child) {
-        margin-block-start: 32px;
+        margin-block-start: 2rem;
       }
 
       @include m.mq('tablet') {
@@ -287,12 +312,12 @@ main {
       top: 0;
       left: 0;
       right: 0;
-      bottom: 100px;
-      /* 아래쪽 패딩 크기만큼 띄움 -> 배경색 제외 효과 */
+      bottom: 6.25rem;
+      // 아래쪽 패딩 크기만큼 띄움 -> 배경색 제외 효과
       background-color: $solate-color-100;
-      /* 원하는 배경색 */
+      // 원하는 배경색
       z-index: -1;
-      /* 콘텐츠 뒤로 보내기 */
+      // 콘텐츠 뒤로 보내기
     }
 
     .features-curve {
@@ -308,8 +333,8 @@ main {
   }
 
   .cta-beta {
-    @include m.container(1110px, 24px);
-    margin-block-start: 122px;
+    @include m.container(69.375rem, 1.5rem);
+    margin-block-start: 7.625rem;
     position: relative;
 
     @include m.mq('tablet') {
@@ -323,13 +348,14 @@ main {
       width: 100%;
       max-width: 280px;
       height: auto;
-      aspect-ratio: 280 / 280;
-      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      margin-inline: auto;
 
       @include m.mq('tablet') {
         grid-column: 1 / 9;
         grid-row: 1;
       }
+
       @include m.mq('desktop') {
         grid-column: 1 / 9;
         grid-row: 1;
@@ -339,7 +365,7 @@ main {
     .content {
       margin-top: -47px;
       width: 100%;
-      padding: 32px;
+      padding: 2rem;
       background-color: $solate-color-900;
       color: $white-color;
       text-align: center;
@@ -347,37 +373,39 @@ main {
       z-index: 5;
 
       @include m.mq('tablet') {
+        text-align: left;
         grid-column: 6 / -1;
         grid-row: 1;
-        margin-top: 161px;
+        margin-top: 10.0625rem;
       }
+
       @include m.mq('desktop') {
         grid-column: 7 / -1;
         grid-row: 1;
-        margin-top: 106px;
+        margin-top: 6.625rem;
       }
 
       .title {
         font-family: fraunces-bold;
 
         @include m.mq('tablet') {
-          font-size: 48px;
+          font-size: 3rem;
         }
       }
 
       .description {
-        margin-top: 32px;
+        margin-top: 2rem;
         font-family: manrope-regular;
         line-height: 1.8;
 
         @include m.mq('tablet') {
-          font-size: 16px;
+          font-size: 1rem;
         }
       }
 
       .btn-primary {
-        margin-block-start: 32px;
-        padding: 12px 32px;
+        margin-block-start: 2rem;
+        padding: 0.75rem 2rem;
         border: 1px solid transparent;
         background-color: $green-color;
         transition: 0.3s;
@@ -409,8 +437,8 @@ main {
 }
 
 footer {
-  @include m.container(1110px, 24px);
-  margin-block-start: 80px;
+  @include m.container(69.375rem, 1.5rem);
+  margin-block-start: 5rem;
 
   img {
     width: 95.76px;
@@ -422,7 +450,7 @@ footer {
   ul {
     width: 116px;
     margin: 0 auto;
-    margin-block-start: 56px;
+    margin-block-start: 3.5rem;
     display: flex;
     justify-content: center;
     gap: 1.75rem;
@@ -431,6 +459,6 @@ footer {
       flex: 1;
     }
 
-    margin-block-end: 80px;
+    margin-block-end: 5rem;
   }
 }
