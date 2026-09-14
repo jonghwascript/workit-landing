@@ -52,15 +52,15 @@ Users should be able to:
 
 This project helped me practice responsive layout details that are easy to overlook in a landing page: decorative curves, layered background images, fluid hero artwork, and accessible section structure.
 
-I used `clip-path` to create the curved section edges without adding extra image assets:
+I used `clip-path` to create the features section's curved edge without adding extra image assets:
 
 ```scss
-.hero-curve {
+.features-curve {
   clip-path: ellipse(70% 30% at 45% 51%);
 }
 ```
 
-I also learned that `background-clip: content-box` can exclude padding from the painted background area:
+In the original header layout, I learned that `background-clip: content-box` can exclude padding from the painted background area. The refactored hero now uses a separate decorative pseudo-element instead:
 
 ```scss
 header {
@@ -87,12 +87,13 @@ For cases where only the bottom padding should be excluded from a section backgr
 }
 ```
 
-For responsive images, I used a flexible width with a maximum size and `aspect-ratio` so the browser can reserve the correct space before the image loads:
+The hero image now stays in normal flow inside `.hero-art`. Its wrapper grows with the image, while an absolutely positioned pseudo-element paints the purple curve behind it. A fluid maximum width and `aspect-ratio` let the image scale without requiring image-height offsets in the next section:
 
 ```scss
 .hero-center {
   width: calc(100% - 2.5rem);
-  max-width: 320px;
+  max-width: clamp(320px, 50vw, 767px);
+  margin-inline: auto;
   height: auto;
   aspect-ratio: 320 / 184;
 }
@@ -123,7 +124,7 @@ For desktop decorative patterns, I learned that `clamp()` is a good way to combi
 header {
   background-position:
     left clamp(-140px, -10vw, -80px) top 28%,
-    right clamp(-72px, -5vw, -32px) top 81%;
+    right clamp(-72px, -5vw, -32px) top 40%;
 }
 ```
 
@@ -141,7 +142,8 @@ I want to keep improving how I handle decorative assets across tablet and deskto
 
 I also want to continue refining accessibility details, including meaningful labels for interactive links, focus states, and hidden headings for sections that need semantic names.
 
-- [ ] Rework the hero layout so the phone image stays in normal flow and can grow at tablet and desktop sizes beyond its current `max-width: 320px`. Replace the fixed header heights and the image-dependent `.features` padding (`calc(184px / 2 + 64px)`) with content-driven spacing. Review `main`'s negative margin, curve placement, and overflow together, keeping decorative curves separate from content flow. Compare against the design and check all viewport sizes before finalizing image dimensions. This is a reviewed follow-up task; no hero layout changes have been made yet.
+- [x] Keep the hero image in normal flow, allow it to grow beyond 320px, remove fixed header heights and `main`'s negative margin, and replace image-dependent features padding with responsive section spacing. Separate the purple curve from content flow and remove the hero's clipping. Reviewed the bundled design preview and checked the hero at 375px, 768px, and 1440px in headless Edge.
+- [ ] Compare exact image dimensions and spacing against full-resolution design references; the bundled preview is a composite rather than a breakpoint-specific specification.
 
 ### Review fixes
 

@@ -131,19 +131,6 @@ footer {
 header {
   background-color: #24053e;
   position: relative;
-  padding-bottom: 30px;
-  height: 451px;
-  background-clip: content-box;
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  header {
-    height: 510px;
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
-}
-header {
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -152,7 +139,7 @@ header {
     background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
     /* 2번 이미지 */
     /* 위치 지정 */
-    background-position: left -22vw top 28%, right -9vw top 81%;
+    background-position: left -22vw top 28%, right -9vw top 40%;
     /* 반복 및 크기 지정 */
     background-repeat: no-repeat, no-repeat;
     background-size: 270px, 141px;
@@ -166,7 +153,7 @@ header {
 @media (min-width: 1024px) {
   header {
     background-image: url("../images/bg-pattern-1.svg"), url("../images/bg-pattern-2.svg");
-    background-position: left clamp(-140px, -10vw, -80px) top 28%, right clamp(-72px, -5vw, -32px) top 81%;
+    background-position: left clamp(-140px, -10vw, -80px) top 28%, right clamp(-72px, -5vw, -32px) top 40%;
     background-repeat: no-repeat, no-repeat;
     background-size: 270px, 141px;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
@@ -175,7 +162,7 @@ header {
 header nav {
   width: min(1110px, 100% - 40px);
   margin-inline: auto;
-  height: 67px;
+  min-height: 67px;
   padding-top: 32px;
   display: flex;
   justify-content: space-between;
@@ -210,18 +197,12 @@ header nav .nav-btn:hover {
 }
 header .hero {
   color: #fff;
-  border-radius: 0 0 15px 15px;
-  overflow: hidden;
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  header .hero {
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
+  display: grid;
+  gap: 48px;
 }
 header .hero .hero-content {
   margin-block-start: 56px;
+  padding-inline: 20px;
 }
 header .hero .hero-content .title {
   font-family: "fraunces-bold";
@@ -272,48 +253,30 @@ header .hero .hero-content .hero-btn:hover {
   color: #44ffa1;
   background-color: transparent;
 }
-header .hero .hero-left {
-  width: 280px;
-  height: 215px;
-  background-image: none;
-  background-position: center center;
-  background-size: contain;
-  position: absolute;
-  top: 20%;
-  left: -23%;
+header .hero-art {
+  position: relative;
+  isolation: isolate;
+  background-color: #fcf8ff;
 }
-header .hero-curve {
-  clip-path: ellipse(70% 30% at 45% 51%);
-  width: 100%;
-  min-height: 100px;
-  background: #24053e;
+header .hero-art::before {
+  content: "";
   position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
+  inset: 0 0 45%;
+  border-radius: 0 0 50% 50%/0 0 32px 32px;
+  background-color: #24053e;
+  pointer-events: none;
+  z-index: -1;
 }
 header .hero-center {
-  position: absolute;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  /* 반응형을 위한 변경 사항 */
   width: calc(100% - 2.5rem);
-  /* 부모 공간에 맞춰 유연하게 늘어남 */
-  max-width: 320px;
-  /* 단, 320px 이상으로는 커지지 않음 */
+  max-width: clamp(320px, 50vw, 767px);
+  margin-inline: auto;
   height: auto;
-  /* 가로 너비에 맞춰 세로를 자동으로 줄임 */
   aspect-ratio: 320/184;
-  z-index: 10;
 }
 
-main {
-  margin-top: -16px;
-}
 main .features {
-  padding-top: 156px;
+  padding-top: clamp(64px, 7vw, 112px);
   padding-bottom: 200px;
   position: relative;
   z-index: 1;

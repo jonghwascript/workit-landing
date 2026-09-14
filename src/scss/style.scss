@@ -27,14 +27,6 @@ footer {
 header {
   background-color: $solate-color-900;
   position: relative;
-  padding-bottom: 30px;
-  height: calc(481px - 30px);
-  //패딩에는 배경색을 제외
-  background-clip: content-box;
-
-  @include m.mq('tablet') {
-    height: calc(540px - 30px);
-  }
 
   @include m.mq('tablet') {
     background-image:
@@ -45,7 +37,7 @@ header {
     /* 위치 지정 */
     background-position:
       left -22vw top 28%,
-      right -9vw top 81%;
+      right -9vw top 40%;
 
     /* 반복 및 크기 지정 */
     background-repeat: no-repeat, no-repeat;
@@ -58,14 +50,14 @@ header {
       url('../images/bg-pattern-1.svg'), url('../images/bg-pattern-2.svg');
     background-position:
       left clamp(-140px, -10vw, -80px) top 28%,
-      right clamp(-72px, -5vw, -32px) top 81%;
+      right clamp(-72px, -5vw, -32px) top 40%;
     background-repeat: no-repeat, no-repeat;
     background-size: 270px, 141px;
   }
 
   nav {
     @include m.container(1110px, 20px);
-    height: 67px;
+    min-height: 67px;
     padding-top: 32px;
 
     display: flex;
@@ -105,14 +97,12 @@ header {
 
   .hero {
     color: $white-color;
-    border-radius: 0 0 15px 15px;
-    overflow: hidden;
-
-    @include m.mq('tablet') {
-    }
+    display: grid;
+    gap: 48px;
 
     .hero-content {
       margin-block-start: 56px;
+      padding-inline: 20px;
 
       .title {
         font-family: 'fraunces-bold';
@@ -165,55 +155,37 @@ header {
       }
     }
 
-    .hero-left {
-      width: 280px;
-      height: 215px;
-      background-image: none;
-      background-position: center center;
-      background-size: contain;
+  }
+
+  .hero-art {
+    position: relative;
+    isolation: isolate;
+    background-color: $solate-color-100;
+
+    // Only the decoration is out of flow; the image sizes this wrapper.
+    &::before {
+      content: '';
       position: absolute;
-      top: 20%;
-      left: -23%;
+      inset: 0 0 45%;
+      border-radius: 0 0 50% 50% / 0 0 32px 32px;
+      background-color: $solate-color-900;
+      pointer-events: none;
+      z-index: -1;
     }
   }
 
-  .hero-curve {
-    clip-path: ellipse(70% 30% at 45% 51%);
-    width: 100%;
-    min-height: 100px;
-    background: #24053e;
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-  }
-
   .hero-center {
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    // width: 320.02px;
-    // height: 184px;
-    /* 반응형을 위한 변경 사항 */
     width: calc(100% - 2.5rem);
-    /* 부모 공간에 맞춰 유연하게 늘어남 */
-    max-width: 320px;
-    /* 단, 320px 이상으로는 커지지 않음 */
+    max-width: clamp(320px, 50vw, 767px);
+    margin-inline: auto;
     height: auto;
-    /* 가로 너비에 맞춰 세로를 자동으로 줄임 */
     aspect-ratio: 320 / 184;
-    // /* 원본 비율대로 미리 공간을 잡아둠 *
-    z-index: 10;
   }
 }
 
 main {
-  margin-top: -16px;
-
   .features {
-    padding-top: calc(184px / 2 + 64px);
+    padding-top: clamp(64px, 7vw, 112px);
     padding-bottom: 200px;
     position: relative;
     z-index: 1;
