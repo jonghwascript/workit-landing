@@ -118,39 +118,14 @@ body {
 }
 
 .container {
-  width: min(1110px, 100% - 48px);
-  margin-inline: auto;
+  width: 100%;
+  overflow: hidden;
 }
 
 header,
 main,
 footer {
-  width: min(375px, 100%);
-  margin: 0 auto;
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 768px) {
-  header,
-  main,
-  footer {
-    width: min(768px, 100%);
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
-}
-header,
-main,
-footer {
-  /* 맵에 해당 기기 이름이 있는지 확인 */
-  /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
-}
-@media (min-width: 1024px) {
-  header,
-  main,
-  footer {
-    width: min(1440px, 100%);
-    /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
-  }
+  width: 100%;
 }
 
 header {
@@ -198,9 +173,10 @@ header {
   }
 }
 header nav {
-  width: 100%;
+  width: min(1110px, 100% - 40px);
+  margin-inline: auto;
   height: 67px;
-  padding: 32px 20px 0 20px;
+  padding-top: 32px;
   display: flex;
   justify-content: space-between;
 }
@@ -342,6 +318,8 @@ main .features {
   z-index: 1;
 }
 main .features .feature-list {
+  width: min(1110px, 100% - 48px);
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -492,6 +470,8 @@ main .features .features-curve {
   transform: translateX(-50%);
 }
 main .cta-beta {
+  width: min(1110px, 100% - 48px);
+  margin-inline: auto;
   margin-block-start: 122px;
   position: relative;
   /* 맵에 해당 기기 이름이 있는지 확인 */
@@ -625,6 +605,8 @@ main .cta-beta {
 }
 
 footer {
+  width: min(1110px, 100% - 48px);
+  margin-inline: auto;
   margin-block-start: 80px;
 }
 footer img {
